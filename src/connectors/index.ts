@@ -27,7 +27,16 @@ const coinbaseWeb3ReactOptions: coinbaseWeb3ReactOptionsProps = {
   url: 'http://localhost:3000/'
 }
 
-export const coinbaseWallet = new CoinbaseWallet(
-  coinbaseWeb3ReactActions,
-  coinbaseWeb3ReactOptions
-);
+
+class Connectors {
+  public coinbaseWallet: CoinbaseWallet;
+
+  constructor() {
+    this.coinbaseWallet = new CoinbaseWallet(
+      coinbaseWeb3ReactActions,
+      coinbaseWeb3ReactOptions
+    );
+  }
+}
+
+export const connectors = new Connectors();
