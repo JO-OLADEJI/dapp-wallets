@@ -1,5 +1,4 @@
 import React from 'react';
-// import styled from 'styled-components';
 import { Icon, Text } from './UI';
 import WalletMenu from './WalletMenu';
 

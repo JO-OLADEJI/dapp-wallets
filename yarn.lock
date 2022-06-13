@@ -2407,6 +2407,13 @@
     "@typescript-eslint/types" "5.27.1"
     eslint-visitor-keys "^3.3.0"
 
+"@web3-react/coinbase-wallet@^8.0.22-beta.0":
+  version "8.0.22-beta.0"
+  resolved "https://registry.yarnpkg.com/@web3-react/coinbase-wallet/-/coinbase-wallet-8.0.22-beta.0.tgz#71feb8b3f91077a7141a2c770a9c0f9ffb8bd306"
+  integrity sha512-dabgu/5t/7rugp43cdKe6HCD3ZR1BmkJkIyZeXNXp7e+I4iQH5GXuGLXJS6VO7S0vYN8NhQdjjLQ+kTfUV+CrA==
+  dependencies:
+    "@web3-react/types" "^8.0.10-beta.0"
+
 "@web3-react/core@8.0.33-beta.0":
   version "8.0.33-beta.0"
   resolved "https://registry.yarnpkg.com/@web3-react/core/-/core-8.0.33-beta.0.tgz#018686511e9dcff1001965048d5e16c9ae60268a"
@@ -2427,12 +2434,19 @@
     "@web3-react/types" "^8.0.19-beta.0"
     zustand "^4.0.0-rc.0"
 
-"@web3-react/types@^8.0.19-beta.0":
+"@web3-react/types@8.0.19-beta.0", "@web3-react/types@^8.0.19-beta.0":
   version "8.0.19-beta.0"
   resolved "https://registry.yarnpkg.com/@web3-react/types/-/types-8.0.19-beta.0.tgz#07daeef090cb252302f3bdf138d133df99826fb1"
   integrity sha512-tM63N3IiL5E61HBvx62kDmQlQ/zCfnlYAkJCQnLWFpzQ2Kafcfpi0qAynvFye8DqSgy4E3d6kQah/NIs6BL+qw==
   dependencies:
     zustand "^4.0.0-rc.0"
+
+"@web3-react/types@^8.0.10-beta.0":
+  version "8.0.10-beta.0"
+  resolved "https://registry.yarnpkg.com/@web3-react/types/-/types-8.0.10-beta.0.tgz#8ed9f1b5e40dcbe2a08be5ce9dd9e3ef2b2a6908"
+  integrity sha512-HitBmoKHyLDeRrJgtkImPddb8nzsb/FroAdiaYA15gAwAE3Y/p7Nd/TN8IANlgKcMkuyGyUjPD27fE7Mvw9rEA==
+  dependencies:
+    zustand "^4.0.0-beta.2"
 
 "@webassemblyjs/ast@1.11.1":
   version "1.11.1"
@@ -9352,7 +9366,7 @@ yocto-queue@^0.1.0:
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
 
-zustand@^4.0.0-rc.0:
+zustand@^4.0.0-beta.2, zustand@^4.0.0-rc.0:
   version "4.0.0-rc.1"
   resolved "https://registry.yarnpkg.com/zustand/-/zustand-4.0.0-rc.1.tgz#ec30a3afc03728adec7e1bd7bcc3592176372201"
   integrity sha512-qgcs7zLqBdHu0PuT3GW4WCIY5SgXdsv30GQMu9Qpp1BA2aS+sNS8l4x0hWuyEhjXkN+701aGWawhKDv6oWJAcw==
