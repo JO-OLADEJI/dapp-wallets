@@ -3,12 +3,9 @@ import { MetaMask } from '@web3-react/metamask';
 import { initializeConnector } from '@web3-react/core';
 import { Connector } from '@web3-react/types';
 
-export enum Wallet {
-  METAMASK = 'METAMASK',
-  COINBASE = 'COINBASE'
-}
+// constants
+import { Wallet } from 'constants/index';
 
-// Wallet Initializations
 export const [coinbaseWallet, coinbaseWalletHooks] = initializeConnector<CoinbaseWallet>(
   (actions) => new CoinbaseWallet({
     actions,

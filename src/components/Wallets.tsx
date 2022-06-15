@@ -7,10 +7,11 @@ import { Icon, Text } from './UI';
 import WalletMenu from './WalletMenu';
 
 // connectors
-import { getConnectorForWallet, Wallet } from 'connectors'
+import { getConnectorForWallet } from 'connectors';
 
 // constants
-import { NETWORK_CONFIG, SupportedNetworks } from '../constants/chain'
+import { NETWORK_CONFIG, SupportedNetworks } from 'constants/chain';
+import { Wallet } from 'constants/index';
 
 // assets
 import coinbaseWalletIcon from '../assets/coinbase-wallet-logo.png';
@@ -21,7 +22,13 @@ const Wrapper = styled.div`
   margin: 1rem auto;
 `;
 
-const Wallets = () => {
+interface WalletProps {
+  updateWalletState: React.Dispatch<React.SetStateAction<Wallet | undefined>>
+}
+
+const Wallets = (
+  { updateWalletState }: WalletProps
+) => {
   const tryActivation = async (connector: Connector) => {
     try {
       await connector.activate(NETWORK_CONFIG[SupportedNetworks.RINKEBY]);
@@ -32,11 +39,23 @@ const Wallets = () => {
   }
 
   const activateCoinbaseWallet = async () => {
-    await tryActivation(getConnectorForWallet(Wallet.COINBASE));
+    try {
+      await tryActivation(getConnectorForWallet(Wallet.COINBASE));
+      updateWalletState(Wallet.COINBASE);
+    }
+    catch (error) {
+      console.error(error);
+    }
   }
 
   const activateMetamask = async () => {
-    await tryActivation(getConnectorForWallet(Wallet.METAMASK));
+    try {
+      await tryActivation(getConnectorForWallet(Wallet.METAMASK));
+      updateWalletState(Wallet.METAMASK);
+    }
+    catch (error) {
+      console.error(error);
+    }
   }
 
   return (
