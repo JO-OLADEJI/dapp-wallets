@@ -1,34 +1,61 @@
 import React from 'react';
+import { Connector } from '@web3-react/types';
+import styled from 'styled-components';
+
+// components
 import { Icon, Text } from './UI';
 import WalletMenu from './WalletMenu';
 
 // connectors
-import { connectors } from '../connectors';
+import { getConnectorForWallet, Wallet } from 'connectors'
 
 // constants
 import { NETWORK_CONFIG, SupportedNetworks } from '../constants/chain'
 
 // assets
-import coinbaseWalletLogo from '../assets/coinbase-wallet-logo.png';
+import coinbaseWalletIcon from '../assets/coinbase-wallet-logo.png';
+import metamaskIcon from 'assets/metamask.png';
+
+const Wrapper = styled.div`
+  padding: .8rem;
+  margin: 1rem auto;
+`;
 
 const Wallets = () => {
-  const activateCoinbaseWallet = async () => {
+  const tryActivation = async (connector: Connector) => {
     try {
-      await connectors.coinbaseWallet.activate(NETWORK_CONFIG[SupportedNetworks.FUJI]);
+      await connector.activate(NETWORK_CONFIG[SupportedNetworks.RINKEBY]);
     }
     catch(error) {
       console.error(error)
     }
   }
 
+  const activateCoinbaseWallet = async () => {
+    await tryActivation(getConnectorForWallet(Wallet.COINBASE));
+  }
+
+  const activateMetamask = async () => {
+    await tryActivation(getConnectorForWallet(Wallet.METAMASK));
+  }
+
   return (
-    <WalletMenu onClick={activateCoinbaseWallet}>
-      <Icon
-        src={coinbaseWalletLogo}
-        alt="coinbase wallet"
-      />
-      <Text>Coinbase Wallet</Text>
-    </WalletMenu>
+    <Wrapper>
+      <WalletMenu onClick={activateCoinbaseWallet}>
+        <Icon
+          src={coinbaseWalletIcon}
+          alt="coinbase wallet"
+        />
+        <Text>Coinbase Wallet</Text>
+      </WalletMenu>
+      <WalletMenu onClick={activateMetamask}>
+        <Icon
+          src={metamaskIcon}
+          alt="metamask"
+        />
+        <Text>Metamask</Text>
+      </WalletMenu>
+    </Wrapper>
   );
 }
 

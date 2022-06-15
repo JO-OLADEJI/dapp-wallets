@@ -1,42 +1,53 @@
 import { CoinbaseWallet } from '@web3-react/coinbase-wallet';
-import type { Actions, Web3ReactStateUpdate } from '@web3-react/coinbase-wallet/node_modules/@web3-react/types/dist/index';
-// import type { Actions, Web3ReactStateUpdate } from '@web3-react/types';
+import { MetaMask } from '@web3-react/metamask';
+import { initializeConnector } from '@web3-react/core';
+import { Connector } from '@web3-react/types';
 
-const coinbaseWeb3ReactActions: Actions = {
-  startActivation: () => {
-    return () => {
-      console.log('Starting Activation . . .');
-    }
-  },
-  update: (stateUpdate: Web3ReactStateUpdate) => {
-    console.log('Updatting State . . .', stateUpdate);
-  },
-  // resetState: () => {
-  //   console.log('Resetting State . . .');
-  // },
-  reportError
-};
-
-interface coinbaseWeb3ReactOptionsProps {
-  appName: string
-  url: string
-};
-
-const coinbaseWeb3ReactOptions: coinbaseWeb3ReactOptionsProps = {
-  appName: 'dapp-wallets',
-  url: 'http://localhost:3000/'
+export enum Wallet {
+  METAMASK = 'METAMASK',
+  COINBASE = 'COINBASE'
 }
 
+// Wallet Initializations
+export const [coinbaseWallet, coinbaseWalletHooks] = initializeConnector<CoinbaseWallet>(
+  (actions) => new CoinbaseWallet({
+    actions,
+    options: {
+      url: 'https://speedy-nodes-nyc.moralis.io/72e1c2ac3d68553b29a6b9ed/eth/rinkeby',
+      appName: 'dapp-wallets'
+    }
+  })
+);
 
-class Connectors {
-  public coinbaseWallet: CoinbaseWallet;
+export const [metamask, metamaskHooks] = initializeConnector<MetaMask>(
+  (actions) => new MetaMask({ actions })
+);
 
-  constructor() {
-    this.coinbaseWallet = new CoinbaseWallet(
-      coinbaseWeb3ReactActions,
-      coinbaseWeb3ReactOptions
-    );
+export const getConnectorForWallet = (wallet: Wallet) => {
+  switch (wallet) {
+    case Wallet.COINBASE:
+      return coinbaseWallet;
+    case Wallet.METAMASK:
+      return metamask;
   }
 }
 
-export const connectors = new Connectors();
+export const getWalletForConnector = (connector: Connector): Wallet => {
+  switch (connector) {
+    case metamask:
+      return Wallet.METAMASK;
+    case coinbaseWallet:
+      return Wallet.COINBASE;
+    default:
+      throw Error('unsupported connector');
+  }
+}
+
+export const getHooksForWallet = (wallet: Wallet) => {
+  switch (wallet) {
+    case Wallet.METAMASK:
+      return metamaskHooks;
+    case Wallet.COINBASE:
+      return coinbaseWalletHooks;
+  }
+}
