@@ -1,10 +1,15 @@
 import { CoinbaseWallet } from '@web3-react/coinbase-wallet';
 import { MetaMask } from '@web3-react/metamask';
-import { initializeConnector } from '@web3-react/core';
+import { initializeConnector, Web3ReactHooks } from '@web3-react/core';
 import { Connector } from '@web3-react/types';
 
 // constants
 import { Wallet } from 'constants/index';
+
+const SUPPORTED_WALLETS = [
+  Wallet.COINBASE,
+  Wallet.METAMASK
+];
 
 export const [coinbaseWallet, coinbaseWalletHooks] = initializeConnector<CoinbaseWallet>(
   (actions) => new CoinbaseWallet({
@@ -47,4 +52,35 @@ export const getHooksForWallet = (wallet: Wallet) => {
     case Wallet.COINBASE:
       return coinbaseWalletHooks;
   }
+}
+
+export const getConnectorListItemForWallet = (wallet: Wallet) => {
+  return {
+    connector: getConnectorForWallet(wallet),
+    hooks: getHooksForWallet(wallet),
+  }
+}
+
+interface ConnectorListItems {
+  connector: Connector;
+  hooks: Web3ReactHooks;
+}
+
+export const createOrderedConnectors = (walletOverride?: Wallet) => {
+  const connectors: ConnectorListItems[] = [];
+  if (walletOverride) {
+    connectors.push(getConnectorListItemForWallet(walletOverride));
+  }
+
+  SUPPORTED_WALLETS.filter((wallet) => wallet !== walletOverride).forEach((wallet) => {
+    connectors.push(getConnectorListItemForWallet(wallet))
+  });
+  // connectors.push({ connector: network, hooks: networkHooks });
+
+  const web3ReactConnectors: [Connector, Web3ReactHooks][] = connectors.map(({ connector, hooks }) => [
+    connector,
+    hooks,
+  ]);
+
+  return web3ReactConnectors;
 }

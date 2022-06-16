@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { BigNumber, ethers } from 'ethers';
-
-// hooks
-import { useActiveWeb3React } from 'hooks';
+import { useWeb3React } from '@web3-react/core';
 
 const AccountInfo = () => {
   const [balance, setBalance] = useState(0);
-  const { account, chainId, provider } = useActiveWeb3React();
+  const { account, isActive, provider, chainId } = useWeb3React();
+
+  console.log({ isActive });
 
   useEffect(() => {
     const getBalance = async () => {
