@@ -3,7 +3,7 @@ import { Connector } from '@web3-react/types';
 import styled from 'styled-components';
 
 // components
-import { Icon, Text } from '../UI';
+import { ImgIcon, Text } from '../UI';
 import WalletMenu from './WalletMenu';
 
 // connectors
@@ -60,7 +60,7 @@ const Wallets = () => {
         wallet={Wallet.COINBASE}
         onClick={activateCoinbaseWallet}
       >
-        <Icon
+        <ImgIcon
           src={coinbaseWalletIcon}
           alt="coinbase wallet"
         />
@@ -70,9 +70,10 @@ const Wallets = () => {
         wallet={Wallet.METAMASK}
         onClick={activateMetamask}
       >
-        <Icon
+        <ImgIcon
           src={metamaskIcon}
           alt="metamask"
+          less
         />
         <Text>Metamask</Text>
       </WalletMenu>
