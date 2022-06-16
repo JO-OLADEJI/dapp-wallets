@@ -22,13 +22,7 @@ const Wrapper = styled.div`
   margin: 1rem auto;
 `;
 
-interface WalletProps {
-  updateWalletState: React.Dispatch<React.SetStateAction<Wallet | undefined>>
-}
-
-const Wallets = (
-  { updateWalletState }: WalletProps
-) => {
+const Wallets = () => {
   const tryActivation = async (connector: Connector) => {
     try {
       await connector.activate(NETWORK_CONFIG[SupportedNetworks.RINKEBY]);
@@ -41,7 +35,6 @@ const Wallets = (
   const activateCoinbaseWallet = async () => {
     try {
       await tryActivation(getConnectorForWallet(Wallet.COINBASE));
-      updateWalletState(Wallet.COINBASE);
     }
     catch (error) {
       console.error(error);
@@ -51,7 +44,6 @@ const Wallets = (
   const activateMetamask = async () => {
     try {
       await tryActivation(getConnectorForWallet(Wallet.METAMASK));
-      updateWalletState(Wallet.METAMASK);
     }
     catch (error) {
       console.error(error);
