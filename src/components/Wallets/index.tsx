@@ -3,7 +3,7 @@ import { Connector } from '@web3-react/types';
 import styled from 'styled-components';
 
 // components
-import { Icon, Text } from './UI';
+import { Icon, Text } from '../UI';
 import WalletMenu from './WalletMenu';
 
 // connectors
@@ -16,7 +16,7 @@ import { useEagerConnect } from 'hooks';
 import { Wallet } from 'constants/index';
 
 // assets
-import coinbaseWalletIcon from '../assets/coinbase-wallet-logo.png';
+import coinbaseWalletIcon from 'assets/coinbase-wallet-logo.png';
 import metamaskIcon from 'assets/metamask.png';
 
 const Wrapper = styled.div`
