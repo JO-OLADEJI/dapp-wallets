@@ -4,9 +4,7 @@ import { useWeb3React } from '@web3-react/core';
 
 const AccountInfo = () => {
   const [balance, setBalance] = useState(0);
-  const { account, isActive, provider, chainId } = useWeb3React();
-
-  console.log({ isActive });
+  const { account, provider, chainId } = useWeb3React();
 
   useEffect(() => {
     const getBalance = async () => {

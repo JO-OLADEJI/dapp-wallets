@@ -7,8 +7,8 @@ import { Connector } from '@web3-react/types';
 import { Wallet } from 'constants/index';
 
 const SUPPORTED_WALLETS = [
-  Wallet.COINBASE,
-  Wallet.METAMASK
+  Wallet.METAMASK,
+  Wallet.COINBASE
 ];
 
 export const [coinbaseWallet, coinbaseWalletHooks] = initializeConnector<CoinbaseWallet>(
