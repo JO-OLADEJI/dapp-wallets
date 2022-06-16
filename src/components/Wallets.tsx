@@ -9,6 +9,9 @@ import WalletMenu from './WalletMenu';
 // connectors
 import { getConnectorForWallet } from 'connectors';
 
+// hooks
+import { useEagerConnect } from 'hooks';
+
 // constants
 import { NETWORK_CONFIG, SupportedNetworks } from 'constants/chain';
 import { Wallet } from 'constants/index';
@@ -23,6 +26,8 @@ const Wrapper = styled.div`
 `;
 
 const Wallets = () => {
+  useEagerConnect();
+
   const tryActivation = async (connector: Connector) => {
     try {
       await connector.activate(NETWORK_CONFIG[SupportedNetworks.RINKEBY]);
@@ -52,14 +57,20 @@ const Wallets = () => {
 
   return (
     <Wrapper>
-      <WalletMenu onClick={activateCoinbaseWallet}>
+      <WalletMenu
+        wallet={Wallet.COINBASE}
+        onClick={activateCoinbaseWallet}
+      >
         <Icon
           src={coinbaseWalletIcon}
           alt="coinbase wallet"
         />
         <Text>Coinbase Wallet</Text>
       </WalletMenu>
-      <WalletMenu onClick={activateMetamask}>
+      <WalletMenu
+        wallet={Wallet.METAMASK}
+        onClick={activateMetamask}
+      >
         <Icon
           src={metamaskIcon}
           alt="metamask"
