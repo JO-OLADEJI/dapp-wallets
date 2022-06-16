@@ -13,7 +13,6 @@ import { getConnectorForWallet } from 'connectors';
 import { useEagerConnect } from 'hooks';
 
 // constants
-import { NETWORK_CONFIG, SupportedNetworks } from 'constants/chain';
 import { Wallet } from 'constants/index';
 
 // assets
@@ -30,7 +29,7 @@ const Wallets = () => {
 
   const tryActivation = async (connector: Connector) => {
     try {
-      await connector.activate(NETWORK_CONFIG[SupportedNetworks.RINKEBY]);
+      await connector.activate();
     }
     catch(error) {
       console.error(error)

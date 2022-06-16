@@ -39,13 +39,13 @@ interface WalletMenuProps {
 }
 
 const WalletMenu = ({ children, onClick, wallet }: WalletMenuProps) => {
-  const { connector } = useWeb3React();
+  const { connector, account } = useWeb3React();
   const currentWallet = getWalletForConnector(connector);
 
   return (
     <Wrapper onClick={onClick}>
       {children}
-      {currentWallet === wallet ? <Dot /> : null}
+      {account && currentWallet === wallet ? <Dot /> : null}
     </Wrapper>
   );
 };
