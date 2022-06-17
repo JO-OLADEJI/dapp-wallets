@@ -38,6 +38,11 @@ const TestTx = () => {
     SupportedNetworks.BSC_TESTNET,
   ];
 
+  const resetForm = () => {
+    setReceiverAddress('');
+    setAmount('');
+  }
+
   useEffect(() => {
     setIsButtonDisabled(
       !isActive || Number(amount) === 0 || receiverAddress.length !== 42
@@ -56,6 +61,7 @@ const TestTx = () => {
       };
       const signer = provider?.getSigner(account);
       const tx = await signer?.sendTransaction(transaction);
+      resetForm();
       await tx?.wait();
       alert(tx?.hash);
     }
@@ -99,7 +105,7 @@ const TestTx = () => {
 
   return (
     <PreferredNetworkContext.Provider value={preferredTxNetwork}>
-      <Header>
+      <Header onClick={() => console.log({ account })}>
         Transaction
         <Icon className="fa-solid fa-signature" />
       </Header>
