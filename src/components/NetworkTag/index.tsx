@@ -9,20 +9,20 @@ import { PreferredNetworkContext } from "components/TestTx";
 import { SupportedNetworks, NetworkMap } from "constants/chain";
 
 const TagWrapper = styled.div<{ selected: boolean }>`
-  border: ${({ selected }) => selected ? '2px' : '1px'} solid #E7EBEF;
+  border: ${({ selected }) => (selected ? "2px" : "1px")} solid #e7ebef;
   min-width: 5rem;
   display: inline-block;
   cursor: pointer;
-  padding: .3rem .5rem;
+  padding: 0.3rem 0.5rem;
   border-radius: 1rem;
-  margin: 0 .2rem;
-  background-color: ${({ selected }) => selected ? '#ECF0F5' : 'transparent'};
-  color: ${({ selected }) => selected ? 'black' : '#858585'};
+  margin: 0 0.2rem;
+  background-color: ${({ selected }) => (selected ? "#ECF0F5" : "transparent")};
+  color: ${({ selected }) => (selected ? "black" : "#858585")};
 `;
 
 const SmallText = styled(Text)`
   font-weight: 400;
-  font-size: .9rem;
+  font-size: 0.9rem;
   color: inherit;
 `;
 
