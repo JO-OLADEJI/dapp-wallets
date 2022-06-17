@@ -71,12 +71,16 @@ const WalletMenu = ({ children, onClick, wallet }: WalletMenuProps) => {
   const { connector, account } = useWeb3React();
   const currentWallet = getWalletForConnector(connector);
 
+  const disconnectWallet = () => {
+    connector.deactivate ? connector.deactivate() : connector.resetState();
+  }
+
   return (
     <Wrapper onClick={onClick}>
       {children}
       {account && currentWallet === wallet ? <Dot /> : null}
       {account && currentWallet === wallet
-        ? <DisconnectButton title="disconnect">
+        ? <DisconnectButton title="disconnect" onClick={disconnectWallet}>
             <ButtonIcon
               className="fa-solid fa-trash"
             />
