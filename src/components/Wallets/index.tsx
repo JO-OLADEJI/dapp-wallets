@@ -21,7 +21,6 @@ import metamaskIcon from 'assets/metamask.png';
 
 const Wrapper = styled.div`
   padding: .8rem;
-  margin: 1rem auto;
 `;
 
 const Wallets = () => {

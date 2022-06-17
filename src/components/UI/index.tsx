@@ -13,6 +13,7 @@ export const Text = styled.p`
 export const Header = styled.h1`
   color: #242525;
   font-size: 1.5rem;
+  margin: 1rem 0;
 `;
 
 export const Icon = styled.i`
@@ -22,5 +23,33 @@ export const Icon = styled.i`
 
 export const Divider = styled.div`
   border-top: 1px solid #EAEAF5;
-  margin: .5rem 0;
+  margin: .8rem;
+`;
+
+export const Input = styled.input`
+  border: 1px solid #EAEAF5;
+  font-family: inherit;
+  border-radius: 1.5rem;
+  padding: .5rem 1.5rem;
+  margin-bottom: .5rem;
+
+  &:hover,
+  &:focus {
+    border: 1px solid #242525;
+  }
+`;
+
+export const Button = styled.button`
+  background-color: #7F85FF;
+  padding: .5rem 1rem;
+  margin-left: .5rem;
+  border-radius: 3rem;
+  border: none;
+  width: 7rem;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.8;
+  }
 `;

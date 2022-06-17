@@ -6,6 +6,7 @@ import Wallets from 'components/Wallets';
 import AccountInfo from 'components/AccountInfo';
 import Web3Provider from 'components/Web3Provider';
 import { Icon, Header, Divider } from 'components/UI';
+import TestTx from 'components/TestTx';
 
 const AppContainer = styled.div`
   text-align: center;
@@ -16,8 +17,9 @@ const AppContainer = styled.div`
 `;
 
 const Box = styled.div`
-  width: 25rem;
-  padding: 1.5rem 0.5rem;
+  width: 27rem;
+  padding: .5rem;
+  padding-bottom: 1rem;
   border-radius: 1rem;
   border: 1px solid #EAEAF5;
   box-shadow: 3px 3px 20px 3px #e5e5e5;
@@ -35,6 +37,7 @@ const App = () => {
           <Wallets />
           <AccountInfo />
           <Divider />
+          <TestTx />
         </Box>
       </Web3Provider>
     </AppContainer>
