@@ -15,11 +15,16 @@ export const useEagerConnect = () => {
     metamaskConnector.activate();
   }, []);
 
-  const tryCoinbase = useCallback(() => {
+  const tryCoinbase = useCallback(async () => {
+    let isCoinbaseWallet: boolean;
+    try {
+      isCoinbaseWallet = (window.ethereum as any).providers[0];
+    } catch (err) {
+      isCoinbaseWallet = false;
+    }
+
     // try coinbase wallet
     if (triedEagerly !== '1') {
-      const isCoinbaseWallet: boolean = (window.ethereum as any).providers[0]
-        .isCoinbaseWallet;
       if (isCoinbaseWallet) {
         const coninbaseWallet = getConnectorForWallet(Wallet.COINBASE);
         coninbaseWallet.activate().catch((err: ProviderRpcError) => {
@@ -27,7 +32,8 @@ export const useEagerConnect = () => {
             tryInjected();
           }
         });
-      } else {
+      }
+      else {
         tryInjected();
       }
       sessionStorage.setItem('triedEagerly', '1');
