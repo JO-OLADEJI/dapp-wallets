@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Connector } from '@web3-react/types';
 import styled from 'styled-components';
 
@@ -24,12 +24,7 @@ const Wrapper = styled.div`
 `;
 
 const Wallets = () => {
-  const connectEagerly = useEagerConnect();
-
-  // connect eagerly once
-  useEffect(() => {
-    connectEagerly();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  useEagerConnect();
 
   const tryActivation = async (connector: Connector) => {
     try {
